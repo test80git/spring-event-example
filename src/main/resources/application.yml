@@ -2,3 +2,11 @@ spring:
   application:
      name: spring-event-example
 
+  task:
+    execution:
+      pool:
+        core-size: 5           # Минимальное количество потоков
+        max-size: 20           # Максимальное количество потоков
+        queue-capacity: 1000   # Максимальный размер очереди
+        keep-alive: 60s        # Время жизни неиспользуемого потока
+      thread-name-prefix: async-
