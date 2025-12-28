@@ -1,6 +1,6 @@
 package ru.kotlin.springeventexample.controller
 
-import kotlinx.coroutines.reactor.awaitSingle
+//import ru.kotlin.springeventexample.service.ReactiveSMSService
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -8,14 +8,12 @@ import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import ru.kotlin.springeventexample.service.ReactiveBusinessService
-import ru.kotlin.springeventexample.service.ReactiveSMSService
-import java.time.Duration
 
 @RestController
 @RequestMapping("/api")
 class ReactiveBusinessController(
     private val businessService: ReactiveBusinessService,
-    private val smsService: ReactiveSMSService
+//    private val smsService: ReactiveSMSService
 ) {
 
     @PostMapping("/create/{id}")
@@ -72,14 +70,14 @@ class ReactiveBusinessController(
     }
 
     // Мониторинг SMS событий
-    @GetMapping(value = ["/sms/stream"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
-    fun streamSmsEvents(): Flux<String> {
-        return smsService.getBusinessEventFlux()
-            .map { event ->
-                "data: SMS queued for ${event.payload}\n\n"
-            }
-            .delayElements(Duration.ofMillis(500)) // Замедляем для демонстрации
-    }
+//    @GetMapping(value = ["/sms/stream"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
+//    fun streamSmsEvents(): Flux<String> {
+//        return smsService.getBusinessEventFlux()
+//            .map { event ->
+//                "data: SMS queued for ${event.payload}\n\n"
+//            }
+//            .delayElements(Duration.ofMillis(500)) // Замедляем для демонстрации
+//    }
 
     // Bulk операции
     @PostMapping("/bulk/create")

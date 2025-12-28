@@ -18,7 +18,7 @@ class BusinessService(
     fun create0bject(objectId: Int) {
         // какая-то бизнес-логика
         Thread.sleep(300)
-        logger.info("Object with id = $objectId created.")
+        logger.info("Объект с идентификатором = $objectId created.")
 
         val event = BusinessEvent(
             sourceObject = this,
@@ -29,13 +29,13 @@ class BusinessService(
         )
         publisher.publishEvent(event)
 
-        logger.info("Event sent.")
+        logger.info("Event отправил.")
     }
 
     fun update0bject(objectId: Int) {
         // какая-то бизнес-логика
         Thread.sleep(500)
-        logger.info("Object with id = $objectId update.")
+        logger.info("Объект с идентификатором = $objectId update.")
 
         val event = BusinessEvent(
             sourceObject = this,
@@ -45,13 +45,13 @@ class BusinessService(
             )
         )
         publisher.publishEvent(event)
-        logger.info("Event sent.")
+        logger.info("Event отправил.")
     }
 
     fun delete0bject(objectId: Int) {
         // какая-то бизнес-логика
         Thread.sleep(300)
-        logger.info("Object with id = $objectId deleted.")
+        logger.info("Объект с идентификатором = $objectId deleted.")
 
         val event2 = BusinessEvent(
             sourceObject = this,
@@ -61,7 +61,7 @@ class BusinessService(
             )
         )
         publisher.publishEvent(event2)
-        logger.info("Event 2 sent.")
+        logger.info("Event 2 отправил.")
 
         val event22 = BusinessEvent2(
             sourceObject = this,
@@ -72,7 +72,7 @@ class BusinessService(
             )
         )
         publisher.publishEvent(event22)
-        logger.info("Event 22 sent.")
+        logger.info("Event 22 отправил.")
     }
 
 }
