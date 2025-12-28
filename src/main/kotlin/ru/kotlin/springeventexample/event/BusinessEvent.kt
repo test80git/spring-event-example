@@ -4,9 +4,9 @@ import org.springframework.context.ApplicationEvent
 import java.time.LocalDateTime
 
 data class BusinessEvent(
-    val source0bject: Any,
+    val sourceObject: Any,
     val payload: ActionInfo,
-) : ApplicationEvent(source0bject)
+) : ApplicationEvent(sourceObject)
 
 
 data class ActionInfo(
@@ -22,7 +22,7 @@ enum class ActionType {
 }
 
 data class BusinessEvent2(
-    val source0bject: Any,
+    val sourceObject: Any,
     val payload: ActionInfo,
     val time: LocalDateTime
-) : ApplicationEvent(source0bject)
+) : ApplicationEvent(sourceObject)

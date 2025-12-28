@@ -21,7 +21,7 @@ class BusinessService(
         logger.info("Object with id = $objectId created.")
 
         val event = BusinessEvent(
-            source0bject = this,
+            sourceObject = this,
             payload = ActionInfo(
                 objectId = objectId,
                 actionType = ActionType.CREATE,
@@ -38,7 +38,7 @@ class BusinessService(
         logger.info("Object with id = $objectId update.")
 
         val event = BusinessEvent(
-            source0bject = this,
+            sourceObject = this,
             payload = ActionInfo(
                 objectId = objectId,
                 actionType = ActionType.UPDATE,
@@ -54,7 +54,7 @@ class BusinessService(
         logger.info("Object with id = $objectId deleted.")
 
         val event2 = BusinessEvent(
-            source0bject = this,
+            sourceObject = this,
             payload = ActionInfo(
                 objectId = objectId,
                 actionType = ActionType.DELETE,
@@ -64,7 +64,7 @@ class BusinessService(
         logger.info("Event 2 sent.")
 
         val event22 = BusinessEvent2(
-            source0bject = this,
+            sourceObject = this,
             time = LocalDateTime.now(),
             payload = ActionInfo(
                 objectId = objectId,
