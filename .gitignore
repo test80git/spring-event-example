@@ -1,4 +1,4 @@
-HELP.md
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -38,3 +38,18 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+# Окружение
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Базы данных
+*.db
+*.sqlite
+*.h2.db
+
+# Docker
+docker-compose.override.yml
