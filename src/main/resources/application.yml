@@ -1,7 +1,12 @@
 spring:
   application:
-     name: spring-event-example
+    name: spring-event-example
 
+  # WebFlux настройки
+  webflux:
+    thread-prefix: webflux-worker-
+
+  # Async настройки
   task:
     execution:
       pool:
@@ -10,3 +15,49 @@ spring:
         queue-capacity: 1000   # Максимальный размер очереди
         keep-alive: 60s        # Время жизни неиспользуемого потока
       thread-name-prefix: async-
+
+  # ============= JDBC ДЛЯ LIQUIBASE =============
+  datasource:
+    url: jdbc:postgresql://localhost:5435/audit_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+
+  # R2DBC настройки (реактивный доступ)
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5435/audit_db
+    username: postgres
+    password: password
+    pool:
+      max-size: 10
+      initial-size: 2
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  # Отключаем автоматическую инициализацию схемы Spring Boot
+  sql:
+    init:
+      mode: never
+
+  # Для отладки
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Логирование
+logging:
+  level:
+    org.flywaydb: DEBUG
+    ru.kotlin.springeventexample: DEBUG
+    org.springframework.r2dbc: DEBUG
+    org.springframework.data.r2dbc: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

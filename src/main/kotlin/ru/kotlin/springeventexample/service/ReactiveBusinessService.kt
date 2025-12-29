@@ -21,12 +21,12 @@ class ReactiveBusinessService(
 
     // Реактивная версия создания объекта
     suspend fun createObject(objectId: Int): Mono<String> = mono {
-        logger.info("Starting creation of object with id = $objectId")
+        logger.info("Запуск создания объекта с идентификатором = $objectId")
 
         // Имитация работы с БД (корутины вместо Thread.sleep)
         delay(300)
 
-        logger.info("Object with id = $objectId created.")
+        logger.info("Объект с идентификатором = $objectId created.")
 
         val event = BusinessEvent(
             sourceObject = this,
@@ -39,16 +39,16 @@ class ReactiveBusinessService(
         // Публикуем событие реактивно
         businessEventSink.tryEmitNext(event)
 
-        logger.info("Event sent for object $objectId")
-        "Object with id = $objectId created"
+        logger.info("Событие отправлено для объекта $objectId")
+        "Объект с идентификатором = $objectId created"
     }
 
     suspend fun updateObject(objectId: Int): Mono<String> = mono {
-        logger.info("Starting update of object with id = $objectId")
+        logger.info("Запуск обновления объекта с идентификатором = $objectId")
 
         delay(500)
 
-        logger.info("Object with id = $objectId updated.")
+        logger.info("Объект с идентификатором = $objectId updated.")
 
         val event = BusinessEvent(
             sourceObject = this,
@@ -60,16 +60,16 @@ class ReactiveBusinessService(
 
         businessEventSink.tryEmitNext(event)
 
-        logger.info("Event sent for object $objectId")
-        "Object with id = $objectId updated"
+        logger.info("Событие отправлено для объекта $objectId")
+        "Объект с идентификатором = $objectId updated"
     }
 
     suspend fun deleteObject(objectId: Int): Mono<String> = mono {
-        logger.info("Starting deletion of object with id = $objectId")
+        logger.info("Начинаем удаление объекта с идентификатором = $objectId")
 
         delay(300)
 
-        logger.info("Object with id = $objectId deleted.")
+        logger.info("Объект с идентификатором = $objectId deleted.")
 
         // Первое событие
         val event1 = BusinessEvent(
@@ -94,8 +94,8 @@ class ReactiveBusinessService(
         businessEventSink.tryEmitNext(event1)
         businessEvent2Sink.tryEmitNext(event2)
 
-        logger.info("Both events sent for object $objectId")
-        "Object with id = $objectId deleted"
+        logger.info("Оба события отправлены на объект $objectId")
+        "Объект с идентификатором = $objectId deleted"
     }
 
     // Получаем поток событий для подписки
